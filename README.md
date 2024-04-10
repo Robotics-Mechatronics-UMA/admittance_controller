@@ -1,5 +1,82 @@
-# admittance_controller
-Repository for the admittance controller of a 3 DoF delta parallel manipulator. 
-Consist of two nodes, the first one is a Force Sensor node using an ESP32 and 3 HX711 (Load cell amplifier), the second one is an admittance controller node.
-You have also a launch file if you want to run both as the same time.
+# Admittance_Controller
+
+## Overview
+
+This package contains an admittance controller for a delta parallel manipulator.
+
+**Keywords:** example, package, template
+
+Or, add some keywords to the Bitbucket or GitHub repository.
+
+### License
+
+**Author: Victor Rosillo<br />
+University of Malaga
+Maintainer: Victor Rosillo Suero, vrosillo1110@gmail.com**
+
+<!-- This is research code, expect that it changes often and any fitness for a particular purpose is disclaimed. -->
+
+<!-- [![Build Status](http://rsl-ci.ethz.ch/buildStatus/icon?job=ros_best_practices)](http://rsl-ci.ethz.ch/job/ros_best_practices/) -->
+
+![Delta manipulator](images/Delta_Manipulator.jpeg)
+
+
+### Publications
+
+## Installation
+
+### Installation from Packages
 ROS version Melodic
+    
+Use `rosdep`:
+
+	sudo rosdep install --from-paths src
+
+### Building from Source
+
+#### Building
+
+To build from source, clone the latest version from this repository into your catkin workspace and compile the package using
+
+	cd catkin_workspace/src
+	git clone https://github.com/Robotics-Mechatronics-UMA/admittance_controller.git
+	cd ../
+	rosdep install --from-paths . --ignore-src
+	catkin_make
+
+## Usage
+
+Describe the quickest way to run this software, for example:
+
+Run the main node with
+
+	roslaunch ros_package_template ros_package_template.launch
+
+## Config files
+
+## Launch files
+
+
+
+## Nodes
+
+Node1 admittance_controller_node: an admittance controller for a 6 DoF parallel manipulator.
+
+Node2 dummy_test_noded: a test node that you can launch if you want to test the admittance controller and check the results.
+
+### ADMITTANCE_CONTROLLER
+
+#### Subscribed Topics
+
+* **`/ForceSensor`** ([geometry_msgs/Twist])
+
+	Where the reading of the force sensor will be published.
+
+
+#### Published Topics
+
+* **`/Vel`** ([geometry_msgs/Twist])
+
+
+
+## Bugs & Feature Requests

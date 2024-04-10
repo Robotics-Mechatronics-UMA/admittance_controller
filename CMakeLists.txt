@@ -90,14 +90,9 @@ target_link_libraries(admittance_controller_node ${catkin_LIBRARIES})
 add_dependencies(admittance_controller_node ${catkin_EXPORTED_TARGETS})
 
 #Declaramos un ejecutable para ForceSensor de pruebas
-add_executable(force_sensor_node src/ForceSensor.cpp)
-target_link_libraries(force_sensor_node ${catkin_LIBRARIES})
-add_dependencies(force_sensor_node ${catkin_EXPORTED_TARGETS})
-
-# ## Declare an executable for Arduino node (ForceSensor.ino)
-# add_executable(force_sensor_node src/ForceSensor.ino)
-# target_link_libraries(force_sensor_node ${catkin_LIBRARIES})
-# add_dependencies(force_sensor_node ${catkin_EXPORTED_TARGETS} ${PROJECT_NAME}_gencfg)
+add_executable(dummy_test_node src/DummyTest.cpp)
+target_link_libraries(dummy_test_node ${catkin_LIBRARIES})
+add_dependencies(dummy_test_node ${catkin_EXPORTED_TARGETS})
 
 # ## Incluye el paquete de ros_lib en la construcción
 # include_directories(${catkin_INCLUDE_DIRS} ${ROSSERIAL_ARDUINO_PACKAGE_PATH}/src)
