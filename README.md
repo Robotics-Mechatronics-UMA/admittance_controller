@@ -50,12 +50,16 @@ Describe the quickest way to run this software, for example:
 
 Run the main node with
 
-	roslaunch ros_package_template ros_package_template.launch
+	roslaunch admittance_controller controller.launch (if you want to test the response)
+	roslaunch admittance_controller controller.launch test:=false (if you only want to launch the node)
 
 ## Config files
 
+params.yaml
+
 ## Launch files
 
+controller.launch
 
 
 ## Nodes
