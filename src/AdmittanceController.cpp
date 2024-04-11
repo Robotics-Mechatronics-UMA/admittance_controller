@@ -1,5 +1,6 @@
 // You can't include a library like this (not local folders!)
-#include "admittance_controller/include/ControllerClass.hpp"
+#include ".../admittance_controller/include/ControllerClass.hpp"
+
 
 
 // Constructor
@@ -50,6 +51,31 @@ Eigen::Matrix<double, 6, 1> Controller::AdmittanceController() {
 
     return Vel_desired;
 }
+
+//Getters
+Eigen::Matrix<double, 6, 6>& Controller::getMass() {
+    return Mass;   
+};
+
+Eigen::Matrix<double, 6, 6>& Controller::getDamping() {
+    return Damping;
+};
+
+Eigen::Matrix<double, 6, 6>& Controller::getStiffness() {
+    return Stiffness;
+};
+
+//Setters
+void Controller::setMass(Eigen::Matrix<double, 6, 6>& mass){
+    Mass=mass;
+}
+void Controller::setDamping(Eigen::Matrix<double, 6, 6>& damping){
+    Damping=damping;
+}
+void Controller::setStiffness(Eigen::Matrix<double, 6, 6>& stiffness){
+    Stiffness=stiffness;
+}
+
 
 // Main
 int main() {
