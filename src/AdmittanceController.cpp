@@ -1,5 +1,5 @@
 // You can't include a library like this (not local folders!)
-#include ".../admittance_controller/include/ControllerClass.hpp"
+#include "/admittance_controller/include/AdmittanceClass.hpp"
 
 
 
@@ -24,6 +24,7 @@ Controller::Controller(){
     Stiffness.setZero();
     Wrench.setZero();
     Vel.setZero();
+    //Integration time
     Dt=0.01;
 
 }
@@ -39,8 +40,6 @@ void Controller::ForceSensorCallback(const Eigen::Matrix<double, 6,1>& wrench_ms
 
     // Calculate velocity desired using an admittancec controller
     Eigen::Matrix<double, 6, 1> Vel_pub = AdmittanceController();
-
-    //Publish Vel in /VelMotor topic
 }
 
 
