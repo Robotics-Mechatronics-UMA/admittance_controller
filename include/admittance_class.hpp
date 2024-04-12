@@ -1,5 +1,5 @@
-#ifndef ADMITANCE_CONTROLLER_H
-#define ADMITANCE_CONTROLLER_H
+#pragma once
+
 #include <eigen3/Eigen/Dense>
 #include <iostream>
 
@@ -20,8 +20,6 @@ public:
     Controller();
     //Destructor
     ~Controller();
-    //Force sensor callback
-    void ForceSensorCallback(const Eigen::Matrix<double, 6,1>&);
     //Admittance controller
     Eigen::Matrix<double, 6, 1> AdmittanceController();
 
@@ -35,5 +33,3 @@ public:
     void Controller::setStiffness(Eigen::Matrix<double, 6, 6>&);
 
 };
-
-#endif // ADMITANCE_CONTROLLER_H

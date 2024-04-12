@@ -29,19 +29,8 @@ Controller::Controller(){
 
 }
 
-Controller::~Controller(){}
-
-//Force sensor callback
-void Controller::ForceSensorCallback(const Eigen::Matrix<double, 6,1>& wrench_msg) {
-    // Next update using Twist
-    // Wrench << wrench_msg.linear.x,wrench_msg.linear.y,wrench_msg.linear.z,
-    //         wrench_msg.angular.x,wrench_msg.angular.y,wrench_msg.angular.z;
-
-    //Update wrench matrix value
-    Wrench = wrench_msg; 
-
-    // Calculate velocity desired using an admittancec controller
-    Eigen::Matrix<double, 6, 1> Vel_pub = AdmittanceController();
+Controller::~Controller()
+{
 }
 
 
@@ -77,14 +66,4 @@ void Controller::setStiffness(Eigen::Matrix<double, 6, 6>& stiffness){
     Stiffness=stiffness;
 }
 
-
-// Main
-int main() {
-
-    // Create object controller
-    Controller controller;
-
-
-    return 0;
-}
 

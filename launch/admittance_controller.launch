@@ -1,6 +1,6 @@
 <launch>
 
-    <arg name="test" default="true"/>
+    <arg name="test" default="false"/>
 
     <group if="$(arg test)">
         <node name = "admittance_controller_node" pkg = "robot_delta" type="admittance_controller_node" output="screen" />

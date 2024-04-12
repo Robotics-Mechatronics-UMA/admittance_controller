@@ -19,6 +19,7 @@ private:
     void ForceSensorCallback(const geometry_msgs::TwistConstPtr& msg);
 
 pulic:
-    
+    admittance_ros_interface();
+    ~admittance_ros_interface();
 
 };
