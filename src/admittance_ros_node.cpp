@@ -4,7 +4,7 @@ int main(int argc, char** argv)
 {
     ros::init(argc, argv, "admittance_ros_node");
 
-    ros::NodeHandle nh
+    ros::NodeHandle nh;
 
 
     ros::spin();

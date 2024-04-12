@@ -1,7 +1,6 @@
 // You can't include a library like this (not local folders!)
 #include "include/admittance_class.hpp"
 
- 
 
 // Constructor
 Controller::Controller(){
@@ -33,12 +32,10 @@ Controller::~Controller()
 {
 }
 
-
 // Admittance control method function
 Eigen::Matrix<double, 6, 1> Controller::AdmittanceController() {
     Eigen::Matrix<double, 6, 1> Vel_desired = (Mass.fullPivLu().solve(Wrench - Damping * Vel)) * Dt;
     Vel = Vel_desired;
-
     return Vel_desired;
 }
 
