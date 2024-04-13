@@ -42,15 +42,17 @@ Eigen::Matrix<double, 6, 1> Controller::AdmittanceController() {
 //Getters
 Eigen::Matrix<double, 6, 6>& Controller::getMass() {
     return Mass;   
-};
-
+}
 Eigen::Matrix<double, 6, 6>& Controller::getDamping() {
     return Damping;
-};
-
+}
 Eigen::Matrix<double, 6, 6>& Controller::getStiffness() {
     return Stiffness;
-};
+}
+Eigen::Matrix<double, 6, 1>& Controller::getWrench() {
+    return Wrench;
+}
+
 
 //Setters
 void Controller::setMass(Eigen::Matrix<double, 6, 6>& mass){
@@ -61,6 +63,9 @@ void Controller::setDamping(Eigen::Matrix<double, 6, 6>& damping){
 }
 void Controller::setStiffness(Eigen::Matrix<double, 6, 6>& stiffness){
     Stiffness=stiffness;
+}
+void Controller::setWrench(Eigen::Matrix<double, 6, 1>& wrench){
+    Wrench=wrench;
 }
 
 

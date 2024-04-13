@@ -12,16 +12,17 @@ class admittance_ros_interface
 {
 private:
 
-    std::shared_ptr<admittance_class> admittance_controller;
+    std::shared_ptr<Controller> admittance_controller;
     ros::NodeHandle nh_;
 
     ros::Subscriber wrench_sub;
     ros::Publisher vel_pub;
 
-    void ForceSensorCallback(const geometry_msgs::TwistConstPtr& msg);
 
-pulic:
+
+public:
     admittance_ros_interface();
     ~admittance_ros_interface();
+    void ForceSensorCallback(const geometry_msgs::TwistConstPtr& msg);
 
 };
