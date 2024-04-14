@@ -1,0 +1,26 @@
+name: CI_ROS_test
+
+on:
+  push:
+    branch: [master]
+
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check files repository
+        uses: actions/checkout@v3
+
+      - name: Setup ROS
+        uses: ros-tooling/setup-ros@v0.7
+        with:
+          required-ros-distributions: melodic
+      
+      - uses: ros-tooling/action-ros-ci@v0.3
+        with:
+          import-token: ${{ secrets.GITHUB_TOKEN }}
+          target-ros2-distro: melodic
+          skip-tests: true
