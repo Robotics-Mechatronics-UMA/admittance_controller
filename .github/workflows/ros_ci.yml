@@ -7,9 +7,33 @@ on:
 
 jobs:
 
-  build:
-    runs-on: ubuntu-18.04
+# Test for ROS noetic and ROS2
+
+  # build:
+  #   runs-on: ubuntu-latest
     
+  #   steps:
+  #     - name: Check files repository
+  #       uses: actions/checkout@v3
+
+  #     - name: Setup ROS
+  #       uses: ros-tooling/setup-ros@v0.7
+  #       with:
+  #         required-ros-distributions: noetic
+      
+  #     - uses: ros-tooling/action-ros-ci@v0.3
+  #       with:
+  #         import-token: ${{ secrets.GITHUB_TOKEN }}
+  #         target-ros1-distro: noetic
+  #         skip-tests: true
+
+# Test for ROS melodic
+
+  test_melodic:
+    runs-on: ubuntu-latest
+    container: 
+      image: ros:melodic-ros-core
+
     steps:
       - name: Check files repository
         uses: actions/checkout@v3
@@ -23,4 +47,4 @@ jobs:
         with:
           import-token: ${{ secrets.GITHUB_TOKEN }}
           target-ros1-distro: melodic
-          skip-tests: true
+          skip-tests: true            
