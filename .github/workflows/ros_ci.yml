@@ -22,5 +22,5 @@ jobs:
       - uses: ros-tooling/action-ros-ci@v0.3
         with:
           import-token: ${{ secrets.GITHUB_TOKEN }}
-          target-ros2-distro: melodic
+          target-ros1-distro: melodic
           skip-tests: true
