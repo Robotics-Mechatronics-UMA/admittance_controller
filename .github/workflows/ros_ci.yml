@@ -32,7 +32,7 @@ jobs:
   test_melodic:
     runs-on: ubuntu-latest
     container: 
-      image: ros:melodic-ros-core
+      image: ubuntu:18.04
 
     steps:
       - name: Check files repository
