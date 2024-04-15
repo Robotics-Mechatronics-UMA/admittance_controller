@@ -1,4 +1,4 @@
-#include "include/admittance_ros_interface.hpp"
+#include "admittance_ros_interface.hpp"
 
 int main(int argc, char** argv)
 {

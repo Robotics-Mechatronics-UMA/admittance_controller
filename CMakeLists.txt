@@ -1,15 +1,16 @@
-cmake_minimum_required(VERSION 3.0.2)
-project(admittance_ros_interface)
+cmake_minimum_required(VERSION 2.8.3)
+project(admittance_controller)
 
 add_compile_options(-std=c++11)
 
-## Find catkin macros and libraries
-find_package(catkin REQUIRED COMPONENTS
+
+set(${PROJECT_NAME}_DEPENDS
+  #Package dependencies
   roscpp
-  rospy
   std_msgs
+  sensor_msgs
   geometry_msgs
-  # dynamic_reconfigure
+
 )
 
 find_package(Eigen3 REQUIRED)
@@ -46,8 +47,9 @@ target_link_libraries(admittance_ros_interface ${catkin_LIBRARIES} admittance_mo
 ##Create executables (nodes)
 #Admittance node
 add_executable(admittance_ros_node src/admittance_ros_node.cpp)
-target_link_libraries(admittance_ros_node ${catkin_LIBRARIES})
-add_dependencies(admittance_ros_node ${catkin_EXPORTED_TARGETS})
+add_dependencies(admittance_ros_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(admittance_ros_node ${catkin_LIBRARIES} admittance_model)
+
 
 #Dummy node
 add_executable(dummy_test_node src/DummyTest.cpp)

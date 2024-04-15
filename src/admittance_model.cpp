@@ -1,5 +1,5 @@
 // You can't include a library like this (not local folders!)
-#include "include/admittance_class.hpp"
+#include "admittance_model.hpp"
 
 
 // Constructor
@@ -52,7 +52,9 @@ Eigen::Matrix<double, 6, 6>& Controller::getStiffness() {
 Eigen::Matrix<double, 6, 1>& Controller::getWrench() {
     return Wrench;
 }
-
+Eigen::Matrix<double, 6, 1>& Controller::getVel(){
+    return Vel;
+}
 
 //Setters
 void Controller::setMass(Eigen::Matrix<double, 6, 6>& mass){
@@ -66,6 +68,9 @@ void Controller::setStiffness(Eigen::Matrix<double, 6, 6>& stiffness){
 }
 void Controller::setWrench(Eigen::Matrix<double, 6, 1>& wrench){
     Wrench=wrench;
+}
+void Controller::setVel(Eigen::Matrix<double, 6, 1>& vel){
+    Vel=vel;
 }
 
 

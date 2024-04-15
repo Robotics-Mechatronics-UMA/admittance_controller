@@ -1,5 +1,5 @@
-#include "include/admittance_class.hpp"
-#include "include/admittance_ros_interface.hpp"
+#include "admittance_model.hpp"
+#include "admittance_ros_interface.hpp"
 
 
 admittance_ros_interface::admittance_ros_interface()
@@ -20,6 +20,9 @@ void admittance_ros_interface::ForceSensorCallback(const geometry_msgs::TwistCon
     Eigen::Matrix<double, 6, 1> wrench = admittance_controller->getWrench();
     wrench << msg->linear.x,msg->linear.y,msg->linear.z,
             msg->angular.x,msg->angular.y,msg->angular.z;
+
+    admittance_controller->setWrench(wrench);
+
 
     // Calculate velocity desired using an admittancec controller
     Eigen::Matrix<double, 6, 1> vel_desired = admittance_controller->AdmittanceController();

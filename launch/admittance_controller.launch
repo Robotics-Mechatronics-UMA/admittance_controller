@@ -3,11 +3,11 @@
     <arg name="test" default="false"/>
 
     <group if="$(arg test)">
-        <node name = "admittance_controller_node" pkg = "robot_delta" type="admittance_controller_node" output="screen" />
-        <node name = "dummy_test_node" pkg = "robot_delta" type = "dummy_test_node" output ="screen" />
+        <node name = "admittance_ros_node" pkg = "admittance_controller" type="admittance_ros_node" output="screen" />
+        <node name = "dummy_test_node" pkg = "admittance_controller" type = "dummy_test_node" output ="screen" />
     </group>
 
     <!--Only launch admittance_controller_node -->
-    <node name = "admittance_controller_node" pkg = "robot_delta" type="admittance_controller_node" output="screen" />
+    <node name = "admittance_ros_node" pkg = "admittance_controller" type="admittance_ros_node" output="screen" />
 
 </launch>

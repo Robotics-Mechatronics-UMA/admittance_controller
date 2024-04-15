@@ -6,7 +6,7 @@
 #include <std_msgs/Float32MultiArray.h>
 #include <memory>
 
-#include <include/admittance_class.hpp>
+#include <admittance_model.hpp>
 
 class admittance_ros_interface
 {
