@@ -3,19 +3,20 @@
 
 
 // Constructor
-Controller::Controller(){
+Controller::Controller(double mx, double my, double mz, double bx, double by, double bz)
+{
 
     //Initialize our variables in the constructor
-    Mass <<30,0,0,0,0,0,
-        0,30,0,0,0,0,
-        0,0,30,0,0,0,
+    Mass <<mx,0,0,0,0,0,
+        0,my,0,0,0,0,
+        0,0,mz,0,0,0,
         0,0,0,0,0,0,
         0,0,0,0,0,0,
         0,0,0,0,0,0;
 
-    Damping <<20,0,0,0,0,0,
-            0,20,0,0,0,0,
-            0,0,20,0,0,0,
+    Damping <<bx,0,0,0,0,0,
+            0,by,0,0,0,0,
+            0,0,bz,0,0,0,
             0,0,0,0,0,0,
             0,0,0,0,0,0,
             0,0,0,0,0,0;

@@ -17,7 +17,7 @@ private:
 
 public:
     //Constructor
-    Controller();
+    Controller(double mx, double my, double mz, double bx, double by, double bz);
     //Destructor
     ~Controller();
     //Admittance controller

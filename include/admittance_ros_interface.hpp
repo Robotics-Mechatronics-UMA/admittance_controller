@@ -21,7 +21,7 @@ private:
 
 
 public:
-    admittance_ros_interface();
+    admittance_ros_interface(double mx, double my, double mz, double bx, double by, double bz);
     ~admittance_ros_interface();
     void ForceSensorCallback(const geometry_msgs::TwistConstPtr& msg);
 

@@ -2,17 +2,15 @@
 #include "admittance_ros_interface.hpp"
 
 
-admittance_ros_interface::admittance_ros_interface()
+admittance_ros_interface::admittance_ros_interface(double mx, double my, double mz, double bx, double by, double bz)
 {
-    admittance_controller = std::make_shared<Controller>();
+    admittance_controller = std::make_shared<Controller>(mx, my, mz, bx, by, bz);
 
     wrench_sub = nh_.subscribe("/force", 10,&admittance_ros_interface::ForceSensorCallback, this);
     vel_pub = nh_.advertise<geometry_msgs::Twist>("/motor", 10);
 
 }
-admittance_ros_interface::~admittance_ros_interface()   
-{
-}
+admittance_ros_interface::~admittance_ros_interface(){}
 
 void admittance_ros_interface::ForceSensorCallback(const geometry_msgs::TwistConstPtr& msg)
 {
