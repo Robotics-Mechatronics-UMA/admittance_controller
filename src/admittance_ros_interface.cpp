@@ -28,9 +28,34 @@ void admittance_ros_interface::ForceSensorCallback(const geometry_msgs::TwistCon
     //Create a Twist mesage to publish the velocity
     geometry_msgs::Twist vel_msg;
 
-    vel_msg.linear.x = vel_desired(0);
-    vel_msg.linear.y = vel_desired(1);
-    vel_msg.linear.z = vel_desired(2);
+    //Vel max = 0,02m/s
+    if (vel_desired(0)>0.02)
+    {
+        vel_msg.linear.x = 0.02;
+    }
+    else
+    {
+        vel_msg.linear.x = vel_desired(0);
+
+    }
+    if (vel_desired(1)>0.02)
+    {
+        vel_msg.linear.y = 0.02;
+    }
+    else
+    {
+        vel_msg.linear.y = vel_desired(1);
+
+    }
+    if (vel_desired(2)>0.02)
+    {
+        vel_msg.linear.z = 0.02;
+    }
+    else
+    {
+        vel_msg.linear.z = vel_desired(2);
+
+    }
     vel_msg.angular.x = vel_desired(3);
     vel_msg.angular.y = vel_desired(4);
     vel_msg.angular.z = vel_desired(5);
