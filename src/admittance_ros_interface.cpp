@@ -6,8 +6,8 @@ admittance_ros_interface::admittance_ros_interface(double mx, double my, double 
 {
     admittance_controller = std::make_shared<Controller>(mx, my, mz, bx, by, bz);
 
-    wrench_sub = nh_.subscribe("/force", 10,&admittance_ros_interface::ForceSensorCallback, this);
-    vel_pub = nh_.advertise<geometry_msgs::Twist>("/motor", 10);
+    wrench_sub = nh_.subscribe("/Force", 10,&admittance_ros_interface::ForceSensorCallback, this);
+    vel_pub = nh_.advertise<geometry_msgs::Twist>("/Vel", 10);
 
 }
 admittance_ros_interface::~admittance_ros_interface(){}

@@ -48,10 +48,9 @@ To build from source, clone the latest version from this repository into your ca
 
 Describe the quickest way to run this software, for example:
 
-Run the main node with
+Run the dummy test for the controller, you can save a rosbag file and watch the results of the simulation
 
-	roslaunch admittance_controller controller.launch (if you want to test the response)
-	roslaunch admittance_controller controller.launch test:=false (if you only want to launch the node)
+	roslaunch admittance_controller controller.launch
 
 ## Config files
 
@@ -72,7 +71,7 @@ Node2 dummy_test_noded: a test node that you can launch if you want to test the 
 
 #### Subscribed Topics
 
-* **`/ForceSensor`** ([geometry_msgs/Twist])
+* **`/Force`** ([geometry_msgs/Twist])
 
 	Where the reading of the force sensor will be published.
 
