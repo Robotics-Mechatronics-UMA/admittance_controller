@@ -29,6 +29,11 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
+#Config file
+install(FILES config/params.yaml
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/config
+)
+
 ## Create libraries
 add_library(admittance_model src/admittance_model.cpp)
 target_link_libraries(admittance_model ${catkin_LIBRARIES})
