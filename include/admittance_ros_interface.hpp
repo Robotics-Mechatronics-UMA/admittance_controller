@@ -24,5 +24,6 @@ public:
     ~admittance_ros_interface();
     void ForceSensorCallback(const geometry_msgs::TwistConstPtr& msg);
     void DrCallback(admittance_controller::admittanceConfig &config, uint32_t level);
+    bool StabilityCondition(double m_cfg, double b_cfg);
 
 };
