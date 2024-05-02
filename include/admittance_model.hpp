@@ -3,6 +3,7 @@
 #include <eigen3/Eigen/Dense>
 #include <memory>
 
+
 class Controller {
 private:
 
@@ -16,6 +17,7 @@ private:
 
 
 public:
+
     //Constructor
     Controller(double mx, double my, double mz, double bx, double by, double bz);
     //Destructor

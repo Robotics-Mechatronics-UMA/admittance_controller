@@ -64,3 +64,27 @@ void admittance_ros_interface::ForceSensorCallback(const geometry_msgs::TwistCon
     vel_pub.publish(vel_msg);
 
 }
+
+void admittance_ros_interface::DrCallback(admittance_controller::admittanceConfig &config, uint32_t level)
+{
+    Eigen::Matrix<double, 6,6> mass_cfg;
+    Eigen::Matrix<double, 6,6> damping_cfg;
+
+
+    mass_cfg <<config.mx,0,0,0,0,0,
+        0,config.my,0,0,0,0,
+        0,0,config.mz,0,0,0,
+        0,0,0,0,0,0,
+        0,0,0,0,0,0,
+        0,0,0,0,0,0;
+    admittance_controller->setMass(mass_cfg);
+    
+    damping_cfg <<config.bx,0,0,0,0,0,
+        0,config.by,0,0,0,0,
+        0,0,config.bz,0,0,0,
+        0,0,0,0,0,0,
+        0,0,0,0,0,0,
+        0,0,0,0,0,0;
+
+    admittance_controller->setDamping(damping_cfg);
+}
