@@ -18,6 +18,7 @@ int main(int argc, char** argv)
     //Create an object admittance_controller
     admittance_ros_interface admittance_controller(mx, my, mz, bx, by, bz);
 
+    //Dynamic_reconfigure server
     dynamic_reconfigure::Server<admittance_controller::admittanceConfig> server;
     dynamic_reconfigure::Server<admittance_controller::admittanceConfig>::CallbackType f;
     f = boost::bind(&admittance_ros_interface::DrCallback,&admittance_controller, _1, _2);

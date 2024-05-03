@@ -9,19 +9,19 @@ int main(int argc, char **argv)
     ros::NodeHandle nh;
     ros::Publisher force_publisher = nh.advertise<geometry_msgs::Twist>("/force", 10);
 
-    ros::Rate loop_rate(100); // Frecuencia de publicación en Hz
+    ros::Rate loop_rate(100); //Frecuency of publication (100Hz)
 
-    // Inicializar la variable de tiempo
+    // Initialize time variable
     ros::Time start_time = ros::Time::now();
 
-    geometry_msgs::Twist msg;
+    geometry_msgs::Twist msg; 
     msg.angular.x = 0.0;
     msg.angular.y = 0.0;
     msg.angular.z = 0.0;
 
     while (ros::ok())
     {
-        // Publicar una fuerza de 30N durante 1 segundo
+        // Publish a 30N force for 1 minute
         if ((ros::Time::now() - start_time).toSec() < 1)
         {
             msg.linear.x = 30.0;
@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 
             force_publisher.publish(msg);
         }
-        // Publicar una fuerza de 0N durante 1 segundo
+        // Publish no force for 1 minute
         else if ((ros::Time::now() - start_time).toSec() < 2)
         {
             msg.linear.x = 0.0;
@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 
             force_publisher.publish(msg);
         }
-        // Reiniciar el temporizador
+        // Reset timer
         else
         {
             start_time = ros::Time::now();

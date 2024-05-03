@@ -65,6 +65,7 @@ void admittance_ros_interface::ForceSensorCallback(const geometry_msgs::TwistCon
 
 }
 
+//Dynamic_reconfigure callback function
 void admittance_ros_interface::DrCallback(admittance_controller::admittanceConfig &config, uint32_t level)
 {
     Eigen::Matrix<double, 6,6> mass_cfg;
@@ -100,6 +101,7 @@ void admittance_ros_interface::DrCallback(admittance_controller::admittanceConfi
 
 }
 
+//Stability condition function (mass > sqrt(2)*damping)
 bool admittance_ros_interface::StabilityCondition(double m_cfg, double b_cfg)
 {
     bool stability = false;
