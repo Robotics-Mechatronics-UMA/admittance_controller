@@ -1,7 +1,12 @@
 <launch>
-    <group>
-        <node name = "admittance_ros_node" pkg = "admittance_controller" type="admittance_ros_node" output="screen" />
-        <node name = "dummy_test_node" pkg = "admittance_controller" type = "dummy_test_node" output ="screen" />
-    </group>
+
+<node name="force_sensor_ESP32" pkg="rosserial_python" type="serial_node.py">
+<param name="port" value="/dev/tty"/>
+<param name="baud" value="115200" />
+</node>
+
+<node name="admittance_ros_node" pkg="admittance_controller" type="admittance_ros_node.cpp">
+</node>
+
 
 </launch>

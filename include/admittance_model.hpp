@@ -2,6 +2,7 @@
 
 #include <eigen3/Eigen/Dense>
 #include <memory>
+#include <vector>
 
 
 class Controller {
@@ -19,7 +20,7 @@ private:
 public:
 
     //Constructor
-    Controller(double mx, double my, double mz, double bx, double by, double bz);
+    Controller(const std::vector<double>& mass,const std::vector<double>& damping);
     //Destructor
     ~Controller();
     //Admittance controller

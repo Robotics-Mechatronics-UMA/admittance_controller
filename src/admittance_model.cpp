@@ -3,25 +3,25 @@
 
 
 // Constructor
-Controller::Controller(double mx, double my, double mz, double bx, double by, double bz)
+Controller::Controller(const std::vector<double>& mass,const std::vector<double>& damping)
 {
 
     //Initialize our variables in the constructor
-    Mass <<mx,0,0,0,0,0,
-        0,my,0,0,0,0,
-        0,0,mz,0,0,0,
-        0,0,0,0,0,0,
-        0,0,0,0,0,0,
-        0,0,0,0,0,0;
+    Mass <<mass[0],0,0,0,0,0,
+        0,mass[1],0,0,0,0,
+        0,0,mass[2],0,0,0,
+        0,0,0,mass[3],0,0,
+        0,0,0,0,mass[4],0,
+        0,0,0,0,0,mass[5];
 
-    Damping <<bx,0,0,0,0,0,
-            0,by,0,0,0,0,
-            0,0,bz,0,0,0,
-            0,0,0,0,0,0,
-            0,0,0,0,0,0,
-            0,0,0,0,0,0;
+    Damping <<damping[0],0,0,0,0,0,
+            0,damping[1],0,0,0,0,
+            0,0,damping[2],0,0,0,
+            0,0,0,damping[3],0,0,
+            0,0,0,0,damping[4],0,
+            0,0,0,0,0,damping[5];
 
-    Stiffness.setZero();
+    // Stiffness.setZero();
     Wrench.setZero();
     Vel.setZero();
     //Integration time
@@ -35,8 +35,13 @@ Controller::~Controller()
 
 // Admittance control method function
 Eigen::Matrix<double, 6, 1> Controller::AdmittanceController() {
-    Eigen::Matrix<double, 6, 1> Vel_desired = (Mass.fullPivLu().solve(Wrench - Damping * Vel)) * Dt;
-    Vel = Vel_desired;
+    Eigen::Matrix<double, 6, 1> DeltaV_desired = (Mass.fullPivLu().solve(Wrench - Damping * Vel)) * Dt;
+    
+    //Update current Vel
+    Eigen::Matrix<double, 6, 1> Vel_desired = Vel + DeltaV_desired;
+    setVel(Vel_desired);
+
+    //Return Vel_desired
     return Vel_desired;
 }
 
@@ -47,9 +52,9 @@ Eigen::Matrix<double, 6, 6>& Controller::getMass() {
 Eigen::Matrix<double, 6, 6>& Controller::getDamping() {
     return Damping;
 }
-Eigen::Matrix<double, 6, 6>& Controller::getStiffness() {
-    return Stiffness;
-}
+// Eigen::Matrix<double, 6, 6>& Controller::getStiffness() {
+//     return Stiffness;
+// }
 Eigen::Matrix<double, 6, 1>& Controller::getWrench() {
     return Wrench;
 }
@@ -64,9 +69,9 @@ void Controller::setMass(Eigen::Matrix<double, 6, 6>& mass){
 void Controller::setDamping(Eigen::Matrix<double, 6, 6>& damping){
     Damping=damping;
 }
-void Controller::setStiffness(Eigen::Matrix<double, 6, 6>& stiffness){
-    Stiffness=stiffness;
-}
+// void Controller::setStiffness(Eigen::Matrix<double, 6, 6>& stiffness){
+//     Stiffness=stiffness;
+// }
 void Controller::setWrench(Eigen::Matrix<double, 6, 1>& wrench){
     Wrench=wrench;
 }

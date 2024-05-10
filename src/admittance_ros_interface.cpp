@@ -2,9 +2,9 @@
 #include "admittance_ros_interface.hpp"
 
 
-admittance_ros_interface::admittance_ros_interface(double mx, double my, double mz, double bx, double by, double bz)
+admittance_ros_interface::admittance_ros_interface(const std::vector<double>& mass,const std::vector<double>& damping)
 {
-    admittance_controller = std::make_shared<Controller>(mx, my, mz, bx, by, bz);
+    admittance_controller = std::make_shared<Controller>(mass, damping);
 
     wrench_sub = nh_.subscribe("/Force", 10,&admittance_ros_interface::ForceSensorCallback, this);
     vel_pub = nh_.advertise<geometry_msgs::Twist>("/Vel", 10);
@@ -56,6 +56,8 @@ void admittance_ros_interface::ForceSensorCallback(const geometry_msgs::TwistCon
         vel_msg.linear.z = vel_desired(2);
 
     }
+
+    //angular vel
     vel_msg.angular.x = vel_desired(3);
     vel_msg.angular.y = vel_desired(4);
     vel_msg.angular.z = vel_desired(5);
@@ -100,6 +102,17 @@ void admittance_ros_interface::DrCallback(admittance_controller::admittanceConfi
 
 
 }
+
+// bool admittance_ros_interface::VelRestriction(double vel)
+// {
+//     bool rest = false; 
+//     if (vel<0.02)
+//     {
+//         rest=true;
+//     }
+
+//     return rest;
+// }
 
 //Stability condition function (mass > sqrt(2)*damping)
 bool admittance_ros_interface::StabilityCondition(double m_cfg, double b_cfg)
