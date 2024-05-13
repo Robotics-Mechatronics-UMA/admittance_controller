@@ -50,12 +50,12 @@ void admittance_ros_interface::ForceSensorCallback(const geometry_msgs::TwistCon
     vel_msg.angular.y = (vel_desired(4) >= 0.0) ? std::min(vel_desired(4), max_vel) : std::max(vel_desired(4), -max_vel);
     vel_msg.angular.z = (vel_desired(5) >= 0.0) ? std::min(vel_desired(5), max_vel) : std::max(vel_desired(5), -max_vel);
 
-    vel_msg.linear.x = vel_desired(0);
-    vel_msg.linear.y = vel_desired(1);
-    vel_msg.linear.z = vel_desired(2);
-    vel_msg.angular.x = vel_desired(3);
-    vel_msg.angular.y = vel_desired(4);
-    vel_msg.angular.z = vel_desired(5);
+    // vel_msg.linear.x = vel_desired(0);
+    // vel_msg.linear.y = vel_desired(1);
+    // vel_msg.linear.z = vel_desired(2);
+    // vel_msg.angular.x = vel_desired(3);
+    // vel_msg.angular.y = vel_desired(4);
+    // vel_msg.angular.z = vel_desired(5);
 
 
 
