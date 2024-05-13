@@ -15,8 +15,8 @@ int main(int argc, char** argv)
     // nh.param<double>("by", by, 20.0);
     // nh.param<double>("bz", bz, 20.0);
 
-    std::vector<double> mass = {30.0,30.0,30.0,0.0,0.0,0.0};
-    std::vector<double> damping = {20.0,20.0,20.0,0.0,0.0,0.0};
+    std::vector<double> mass = {10.0,10.0,10.0,0.0,0.0,0.0};
+    std::vector<double> damping = {5.0,5.0,5.0,0.0,0.0,0.0};
 
     //Create an object admittance_controller
     admittance_ros_interface admittance_controller(mass, damping);

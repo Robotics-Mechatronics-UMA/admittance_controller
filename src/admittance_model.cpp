@@ -35,10 +35,13 @@ Controller::~Controller()
 
 // Admittance control method function
 Eigen::Matrix<double, 6, 1> Controller::AdmittanceController() {
-    Eigen::Matrix<double, 6, 1> DeltaV_desired = (Mass.fullPivLu().solve(Wrench - Damping * Vel)) * Dt;
+    Eigen::Matrix<double, 6, 1> Delta_vel = (Mass.fullPivLu().solve(Wrench - Damping * Vel)) * Dt;
+
+    // Eigen::Matrix<double, 6, 1>Vel_desired = (1/Mass*(Wrench-Damping*Vel))*Dt;  
     
+    // Eigen::Matrix<double, 6, 1> Vel_desired=Vel+Delta_vel;
+
     //Update current Vel
-    Eigen::Matrix<double, 6, 1> Vel_desired = Vel + DeltaV_desired;
     setVel(Vel_desired);
 
     //Return Vel_desired

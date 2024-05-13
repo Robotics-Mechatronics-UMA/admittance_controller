@@ -12,58 +12,74 @@ admittance_ros_interface::admittance_ros_interface(const std::vector<double>& ma
 }
 admittance_ros_interface::~admittance_ros_interface(){}
 
-void admittance_ros_interface::ForceSensorCallback(const geometry_msgs::TwistConstPtr& msg)
+void admittance_ros_interface::ForceSensorCallback(const geometry_msgs::TwistConstPtr& W_msg)
 {
     // Update Wrench matrix
     Eigen::Matrix<double, 6, 1> wrench = admittance_controller->getWrench();
-    wrench << msg->linear.x,msg->linear.y,msg->linear.z,
-            msg->angular.x,msg->angular.y,msg->angular.z;
+    wrench << W_msg->linear.x,W_msg->linear.y,W_msg->linear.z,
+            W_msg->angular.x,W_msg->angular.y,W_msg->angular.z;
 
     admittance_controller->setWrench(wrench);
 
 
-    // Calculate velocity desired using an admittancec controller
+    // Calculate increased velocity using an admittance controller
     Eigen::Matrix<double, 6, 1> vel_desired = admittance_controller->AdmittanceController();
 
-    //Create a Twist mesage to publish the velocity
+
+    //Create a vector mesage to publish the velocity
+    // std_msgs::Float32MultiArray vel_msg;
     geometry_msgs::Twist vel_msg;
 
     //Vel max = 0,02m/s
-    if (vel_desired(0)>0.02)
-    {
-        vel_msg.linear.x = 0.02;
-    }
-    else
-    {
-        vel_msg.linear.x = vel_desired(0);
+    double max_vel = 0.02;
+    
+    //Compare ve_desired with max_vel and -max_vel 
+    vel_msg.linear.x = (vel_desired(0) >= 0.0) ? std::min(vel_desired(0), max_vel) : std::max(vel_desired(0), -max_vel);
+    vel_msg.linear.y = (vel_desired(1) >= 0.0) ? std::min(vel_desired(1), max_vel) : std::max(vel_desired(1), -max_vel);
+    vel_msg.linear.z = (vel_desired(2) >= 0.0) ? std::min(vel_desired(2), max_vel) : std::max(vel_desired(2), -max_vel);
+    vel_msg.angular.x = (vel_desired(3) >= 0.0) ? std::min(vel_desired(3), max_vel) : std::max(vel_desired(3), -max_vel);
+    vel_msg.angular.y = (vel_desired(4) >= 0.0) ? std::min(vel_desired(4), max_vel) : std::max(vel_desired(4), -max_vel);
+    vel_msg.angular.z = (vel_desired(5) >= 0.0) ? std::min(vel_desired(5), max_vel) : std::max(vel_desired(5), -max_vel);
 
-    }
-    if (vel_desired(1)>0.02)
-    {
-        vel_msg.linear.y = 0.02;
-    }
-    else
-    {
-        vel_msg.linear.y = vel_desired(1);
-
-    }
-    if (vel_desired(2)>0.02)
-    {
-        vel_msg.linear.z = 0.02;
-    }
-    else
-    {
-        vel_msg.linear.z = vel_desired(2);
-
-    }
-
-    //angular vel
-    vel_msg.angular.x = vel_desired(3);
-    vel_msg.angular.y = vel_desired(4);
-    vel_msg.angular.z = vel_desired(5);
 
     //Publish velocity mesage
     vel_pub.publish(vel_msg);
+    
+    // //For loop
+    // for(int i=0;i<vel_desired.rows();i++)
+    // {
+    //     if(vel_desired(i)>=0.0)
+    //     {
+    //         if (vel_desired(i)>max_vel)
+    //         {
+    //             vel_msg.data.push_back(max_vel);
+    //         }
+    //         else
+    //         {
+    //             vel_msg.data.push_back(vel_desired(i));
+
+    //         }
+    //     }
+    //     if(vel_desired(i)<0.0)
+    //     {
+    //         if (vel_desired(i)<-max_vel)
+    //         {
+    //             vel_msg.data.push_back(-max_vel);
+    //         }
+    //         else
+    //         {
+    //             vel_msg.data.push_back(vel_desired(i));
+
+    //         }
+    //     }
+    // }
+
+    // for(int i=0;i<vel_msg.data.size();i++)
+    // {
+    //     ROS_INFO_STREAM(vel_msg.data[i]);
+    // }
+
+
 
 }
 
@@ -102,17 +118,6 @@ void admittance_ros_interface::DrCallback(admittance_controller::admittanceConfi
 
 
 }
-
-// bool admittance_ros_interface::VelRestriction(double vel)
-// {
-//     bool rest = false; 
-//     if (vel<0.02)
-//     {
-//         rest=true;
-//     }
-
-//     return rest;
-// }
 
 //Stability condition function (mass > sqrt(2)*damping)
 bool admittance_ros_interface::StabilityCondition(double m_cfg, double b_cfg)

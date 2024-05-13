@@ -5,9 +5,9 @@
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "force_sensor_node");
+    ros::init(argc, argv, "dummy_test_node");
     ros::NodeHandle nh;
-    ros::Publisher force_publisher = nh.advertise<geometry_msgs::Twist>("/force", 10);
+    ros::Publisher force_publisher = nh.advertise<geometry_msgs::Twist>("/Force", 10);
 
     ros::Rate loop_rate(100); //Frecuency of publication (100Hz)
 
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
     while (ros::ok())
     {
         // Publish a 30N force for 1 minute
-        if ((ros::Time::now() - start_time).toSec() < 1)
+        if ((ros::Time::now() - start_time).toSec() < 5)
         {
             msg.linear.x = 30.0;
             msg.linear.y = 30.0;
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
             force_publisher.publish(msg);
         }
         // Publish no force for 1 minute
-        else if ((ros::Time::now() - start_time).toSec() < 2)
+        else if ((ros::Time::now() - start_time).toSec() < 10)
         {
             msg.linear.x = 0.0;
             msg.linear.y = 0.0;
