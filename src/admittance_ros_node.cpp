@@ -1,22 +1,21 @@
 #include "admittance_ros_interface.hpp"
+#include "integer_time.hpp"
+
+//Time variable for integer
+ros::Time int_time; //(Global variable)
+
 
 int main(int argc, char** argv)
 {
     ros::init(argc, argv, "admittance_ros_node");
 
     ros::NodeHandle nh("~");
+    double m = 30.0;
+    double b = 20.0;
 
     //Controller variables
-    // double mx,my,mz,bx,by,bz;
-    // nh.param<double>("mx", mx, 30.0);
-    // nh.param<double>("my", my, 30.0);
-    // nh.param<double>("mz", mz, 30.0);
-    // nh.param<double>("bx", bx, 20.0);
-    // nh.param<double>("by", by, 20.0);
-    // nh.param<double>("bz", bz, 20.0);
-
-    std::vector<double> mass = {10.0,10.0,10.0,0.0,0.0,0.0};
-    std::vector<double> damping = {5.0,5.0,5.0,0.0,0.0,0.0};
+    std::vector<double> mass = {m,m,m,m,m,m};
+    std::vector<double> damping = {b,b,b,0.0,0.0,0.0};
 
     //Create an object admittance_controller
     admittance_ros_interface admittance_controller(mass, damping);
@@ -27,6 +26,8 @@ int main(int argc, char** argv)
     f = boost::bind(&admittance_ros_interface::DrCallback,&admittance_controller, _1, _2);
     server.setCallback(f);
 
+
+    int_time = ros::Time::now();
     
     ros::spin();
 

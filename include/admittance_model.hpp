@@ -13,7 +13,9 @@ private:
     Eigen::Matrix<double, 6, 6> Damping;
     Eigen::Matrix<double, 6, 6> Stiffness;
     Eigen::Matrix<double, 6, 1> Vel;
+    Eigen::Matrix<double, 6, 1> Pos;
     Eigen::Matrix<double, 6, 1> Wrench;
+    double Vel_max;
     double Dt;
 
 
@@ -32,6 +34,10 @@ public:
     Eigen::Matrix<double, 6, 6>& getStiffness();
     Eigen::Matrix<double, 6, 1>& getWrench();
     Eigen::Matrix<double, 6, 1>& getVel();
+    Eigen::Matrix<double, 6, 1>& getPos();
+    double& getVel_max();
+    double& getDt();    
+
 
     //Set params
     void setMass(Eigen::Matrix<double, 6, 6>&);
@@ -39,4 +45,8 @@ public:
     void setStiffness(Eigen::Matrix<double, 6, 6>&);
     void setWrench(Eigen::Matrix<double, 6, 1>&);
     void setVel(Eigen::Matrix<double, 6, 1>&);
+    void setPos(Eigen::Matrix<double, 6, 1>&);
+    void setVel_max(double& );
+    void setDt(double& );
+
 };

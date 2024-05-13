@@ -22,7 +22,7 @@ int main(int argc, char **argv)
     while (ros::ok())
     {
         // Publish a 30N force for 1 minute
-        if ((ros::Time::now() - start_time).toSec() < 5)
+        if ((ros::Time::now() - start_time).toSec() < 10)
         {
             msg.linear.x = 30.0;
             msg.linear.y = 30.0;
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
             force_publisher.publish(msg);
         }
         // Publish no force for 1 minute
-        else if ((ros::Time::now() - start_time).toSec() < 10)
+        else if ((ros::Time::now() - start_time).toSec() < 20)
         {
             msg.linear.x = 0.0;
             msg.linear.y = 0.0;
