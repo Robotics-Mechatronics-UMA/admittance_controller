@@ -57,13 +57,8 @@ void admittance_ros_interface::ForceSensorCallback(const geometry_msgs::TwistCon
     // vel_msg.angular.y = vel_desired(4);
     // vel_msg.angular.z = vel_desired(5);
 
-
-
-
     //Publish velocity mesage
     vel_pub.publish(vel_msg);
-
-
 
 }
 
