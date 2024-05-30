@@ -24,9 +24,9 @@ int main(int argc, char **argv)
         // Publish a 30N force for 1 minute
         if ((ros::Time::now() - start_time).toSec() < 10)
         {
-            msg.linear.x = 30.0;
-            msg.linear.y = 30.0;
-            msg.linear.z = 30.0;
+            msg.linear.x = 10.0;
+            msg.linear.y = 10.0;
+            msg.linear.z = 10.0;
 
 
             force_publisher.publish(msg);
@@ -46,6 +46,7 @@ int main(int argc, char **argv)
         {
             start_time = ros::Time::now();
         }
+        loop_rate.sleep();
 
     }
 
