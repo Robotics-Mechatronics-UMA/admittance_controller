@@ -44,5 +44,5 @@ add_executable(admittance_ros_node src/admittance_ros_node.cpp)
 target_link_libraries(admittance_ros_node ${catkin_LIBRARIES} admittance_ros_interface)
 
 # Nodo de prueba
-add_executable(dummy_test_node src/DummyTest.cpp)
-target_link_libraries(dummy_test_node ${catkin_LIBRARIES})
+add_executable(force_dummy_node src/force_dummy_node.cpp)
+target_link_libraries(force_dummy_node ${catkin_LIBRARIES})
