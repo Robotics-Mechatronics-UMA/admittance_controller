@@ -6,7 +6,7 @@
 
 
 class Controller {
-private:
+private: //Atributes
 
     //Variables
     Eigen::Matrix<double, 6, 6> Mass;
@@ -19,7 +19,7 @@ private:
     double Dt;
 
 
-public:
+public://Methods
 
     //Constructor
     Controller(const std::vector<double>& mass,const std::vector<double>& damping);

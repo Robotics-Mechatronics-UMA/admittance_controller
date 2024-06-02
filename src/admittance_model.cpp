@@ -1,6 +1,4 @@
-// You can't include a library like this (not local folders!)
 #include "admittance_model.hpp"
-
 
 // Constructor
 Controller::Controller(const std::vector<double>& mass,const std::vector<double>& damping)
