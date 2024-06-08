@@ -1,7 +1,7 @@
 <launch>
 
 <node name="force_sensor_ESP32" pkg="rosserial_python" type="serial_node.py">
-<param name="port" value="/dev/tty"/>
+<param name="port" value="/dev/ttyUSB0"/>
 <param name="baud" value="115200" />
 </node>
 
