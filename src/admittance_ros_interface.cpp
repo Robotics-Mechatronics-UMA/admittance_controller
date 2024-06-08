@@ -8,7 +8,7 @@ admittance_ros_interface::admittance_ros_interface(const std::vector<double>& ma
     admittance_controller = std::make_shared<Controller>(mass, damping);
 
     wrench_sub = nh_.subscribe("/Force", 10,&admittance_ros_interface::ForceSensorCallback, this);
-    vel_pub = nh_.advertise<geometry_msgs::Twist>("/Vel", 10);
+    vel_pub = nh_.advertise<geometry_msgs::Twist>("/cmd_vel_ee", 10);
 
 }
 admittance_ros_interface::~admittance_ros_interface(){}
@@ -49,13 +49,6 @@ void admittance_ros_interface::ForceSensorCallback(const geometry_msgs::TwistCon
     vel_msg.angular.x = (vel_desired(3) >= 0.0) ? std::min(vel_desired(3), max_vel) : std::max(vel_desired(3), -max_vel);
     vel_msg.angular.y = (vel_desired(4) >= 0.0) ? std::min(vel_desired(4), max_vel) : std::max(vel_desired(4), -max_vel);
     vel_msg.angular.z = (vel_desired(5) >= 0.0) ? std::min(vel_desired(5), max_vel) : std::max(vel_desired(5), -max_vel);
-
-    // vel_msg.linear.x = vel_desired(0);
-    // vel_msg.linear.y = vel_desired(1);
-    // vel_msg.linear.z = vel_desired(2);
-    // vel_msg.angular.x = vel_desired(3);
-    // vel_msg.angular.y = vel_desired(4);
-    // vel_msg.angular.z = vel_desired(5);
 
     //Publish velocity mesage
     vel_pub.publish(vel_msg);
