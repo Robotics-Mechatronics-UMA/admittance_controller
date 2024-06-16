@@ -47,7 +47,5 @@ target_link_libraries(admittance_ros_node ${catkin_LIBRARIES} admittance_ros_int
 add_executable(force_dummy_node src/force_dummy_node.cpp)
 target_link_libraries(force_dummy_node ${catkin_LIBRARIES})
 
-# Nodo suscriptor
-add_executable(delta_ros_interface_node src/delta_ros_interface_node.cpp)
-target_link_libraries(delta_ros_interface_node ${catkin_LIBRARIES})
+
 

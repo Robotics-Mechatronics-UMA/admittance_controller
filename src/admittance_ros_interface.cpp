@@ -72,54 +72,13 @@ void admittance_ros_interface::DrCallback(admittance_controller::admittanceConfi
     damping_cfg <<config.bx,0,0,0,0,0,
     0,config.by,0,0,0,0,
     0,0,config.bz,0,0,0,
-    0,0,0,0,0,0,
-    0,0,0,0,0,0,
-    0,0,0,0,0,0;
+    0,0,0,config.brx,0,0,
+    0,0,0,0,config.bry,0,
+    0,0,0,0,0,config.brz;
 
     admittance_controller->setDamping(damping_cfg);
 
     vel_cfg = config.v_max;
     admittance_controller->setVel_max(vel_cfg);
-
-
-    // bool stability_x = StabilityCondition(config.mx,config.bx);
-    // bool stability_y = StabilityCondition(config.my,config.by);
-    // bool stability_z = StabilityCondition(config.mz,config.bz);
-
-    // if(stability_x && stability_y && stability_z)
-    // {
-    //     mass_cfg <<config.mx,0,0,0,0,0,
-    //     0,config.my,0,0,0,0,
-    //     0,0,config.mz,0,0,0,
-    //     0,0,0,config.mrx,0,0,
-    //     0,0,0,0,config.mry,0,
-    //     0,0,0,0,0,config.mrz;
-
-    //     admittance_controller->setMass(mass_cfg);
-    
-    //     damping_cfg <<config.bx,0,0,0,0,0,
-    //     0,config.by,0,0,0,0,
-    //     0,0,config.bz,0,0,0,
-    //     0,0,0,0,0,0,
-    //     0,0,0,0,0,0,
-    //     0,0,0,0,0,0;
-
-    //     admittance_controller->setDamping(damping_cfg);
-
-    //     vel_cfg = config.v_max;
-    //     admittance_controller->setVel_max(vel_cfg);
-
-    // } 
 }
 
-// //Stability condition function (mass > sqrt(2)*damping)
-// bool admittance_ros_interface::StabilityCondition(double m_cfg, double b_cfg)
-// {
-//     bool stability = false;
-//     if (m_cfg > sqrt(2)*b_cfg)
-//     {
-//         stability = true;
-//     }
-
-//     return stability;
-// }
