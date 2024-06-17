@@ -19,14 +19,16 @@ int main(int argc, char **argv)
     msg.angular.y = 0.0;
     msg.angular.z = 0.0;
 
+
+    //Generates a square signal between 10 and -10 N 
     while (ros::ok())
     {
         // Publish a 30N force for 10 seconds
         if ((ros::Time::now() - start_time).toSec() < 10)
         {
-            msg.linear.x = 30.0;
-            msg.linear.y = 30.0;
-            msg.linear.z = 30.0;
+            msg.linear.x = 10.0;
+            msg.linear.y = 10.0;
+            msg.linear.z = 10.0;
 
 
             force_publisher.publish(msg);
@@ -34,9 +36,9 @@ int main(int argc, char **argv)
         // Publish no force for 10 seconds
         else if ((ros::Time::now() - start_time).toSec() < 20)
         {
-            msg.linear.x = -30.0;
-            msg.linear.y = -30.0;
-            msg.linear.z = -30.0;
+            msg.linear.x = -10.0;
+            msg.linear.y = -10.0;
+            msg.linear.z = -10.0;
 
 
             force_publisher.publish(msg);
