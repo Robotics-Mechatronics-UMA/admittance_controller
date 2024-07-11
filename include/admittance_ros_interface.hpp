@@ -22,7 +22,7 @@ public:
 
     admittance_ros_interface(const std::vector<double>& mass, const std::vector<double>& damping);
     ~admittance_ros_interface();
-    void ForceSensorCallback(const geometry_msgs::TwistConstPtr& msg);
+    void ForceSensorCallback(const geometry_msgs::Vector3ConstPtr& msg);
     void DrCallback(admittance_controller::admittanceConfig &config, uint32_t level);
     
 

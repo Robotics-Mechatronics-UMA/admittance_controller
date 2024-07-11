@@ -8,17 +8,16 @@ admittance_ros_interface::admittance_ros_interface(const std::vector<double>& ma
     admittance_controller = std::make_shared<Controller>(mass, damping);
 
     wrench_sub = nh_.subscribe("/Force", 10,&admittance_ros_interface::ForceSensorCallback, this);
-    vel_pub = nh_.advertise<geometry_msgs::Twist>("/cmd_vel_ee", 10);
+    vel_pub = nh_.advertise<geometry_msgs::Vector3>("/cmd_vel_ee", 10);
 
 }
 admittance_ros_interface::~admittance_ros_interface(){}
 
-void admittance_ros_interface::ForceSensorCallback(const geometry_msgs::TwistConstPtr& W_msg)
+void admittance_ros_interface::ForceSensorCallback(const geometry_msgs::Vector3ConstPtr& W_msg)
 {
     // Update Wrench matrix
     Eigen::Matrix<double, 6, 1> wrench = admittance_controller->getWrench();
-    wrench << W_msg->linear.x,W_msg->linear.y,W_msg->linear.z,
-            W_msg->angular.x,W_msg->angular.y,W_msg->angular.z;
+    wrench << W_msg->x,W_msg->y,W_msg->z,0.0,0.0,0.0;
 
     admittance_controller->setWrench(wrench);
 
@@ -37,18 +36,19 @@ void admittance_ros_interface::ForceSensorCallback(const geometry_msgs::TwistCon
 
     //Create a vector mesage to publish the velocity
     // std_msgs::Float32MultiArray vel_msg;
-    geometry_msgs::Twist vel_msg;
+    geometry_msgs::Vector3 vel_msg;
 
     //Vel max = 0,02m/s
     double max_vel = admittance_controller->getVel_max();
     
     //Compare ve_desired with max_vel and -max_vel 
-    vel_msg.linear.x = (vel_desired(0) >= 0.0) ? std::min(vel_desired(0), max_vel) : std::max(vel_desired(0), -max_vel);
-    vel_msg.linear.y = (vel_desired(1) >= 0.0) ? std::min(vel_desired(1), max_vel) : std::max(vel_desired(1), -max_vel);
-    vel_msg.linear.z = (vel_desired(2) >= 0.0) ? std::min(vel_desired(2), max_vel) : std::max(vel_desired(2), -max_vel);
-    vel_msg.angular.x = (vel_desired(3) >= 0.0) ? std::min(vel_desired(3), max_vel) : std::max(vel_desired(3), -max_vel);
-    vel_msg.angular.y = (vel_desired(4) >= 0.0) ? std::min(vel_desired(4), max_vel) : std::max(vel_desired(4), -max_vel);
-    vel_msg.angular.z = (vel_desired(5) >= 0.0) ? std::min(vel_desired(5), max_vel) : std::max(vel_desired(5), -max_vel);
+    vel_msg.x = (vel_desired(0) >= 0.0) ? std::min(vel_desired(0), max_vel) : std::max(vel_desired(0), -max_vel);
+    vel_msg.y = (vel_desired(1) >= 0.0) ? std::min(vel_desired(1), max_vel) : std::max(vel_desired(1), -max_vel);
+    vel_msg.z = (vel_desired(2) >= 0.0) ? std::min(vel_desired(2), max_vel) : std::max(vel_desired(2), -max_vel);
+
+    // vel_msg.angular.x = (vel_desired(3) >= 0.0) ? std::min(vel_desired(3), max_vel) : std::max(vel_desired(3), -max_vel);
+    // vel_msg.angular.y = (vel_desired(4) >= 0.0) ? std::min(vel_desired(4), max_vel) : std::max(vel_desired(4), -max_vel);
+    // vel_msg.angular.z = (vel_desired(5) >= 0.0) ? std::min(vel_desired(5), max_vel) : std::max(vel_desired(5), -max_vel);
 
     //Publish velocity mesage
     vel_pub.publish(vel_msg);
