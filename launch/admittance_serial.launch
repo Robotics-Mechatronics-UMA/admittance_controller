@@ -1,11 +1,11 @@
 <launch>
 
 <node name="force_sensor_ESP32" pkg="rosserial_python" type="serial_node.py">
-<param name="port" value="/dev/ttyUSB0"/>
+<param name="port" value="/dev/ttyUSB1"/>
 <param name="baud" value="115200" />
 </node>
 
-<node name="admittance_ros_node" pkg="admittance_controller" type="admittance_ros_node.cpp">
+<node name="admittance_ros_node" pkg="admittance_controller" type="admittance_ros_node">
 </node>
 
 
