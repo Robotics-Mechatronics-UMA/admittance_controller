@@ -49,9 +49,14 @@ To build from source, clone the latest version from this repository into your ca
 
 ## Usage
 
-Run the dummy test for the controller, you can save a rosbag file and watch the results of the simulation
+Run the serial_node which is connecting a real force sensor with the controller framework.
 
-	roslaunch admittance_controller controller.launch
+	roslaunch admittance_controller admittance_serial.launch
+
+Run the dummy test for the controller, you can save a rosbag file and watch the results of the simulation. Online forces are applied to the system.
+
+	roslaunch admittance_controller admittance_dummy.launch
+	
 
 ## Config files
 
@@ -83,11 +88,14 @@ Node2 force_dummy_node: A test node that you can launch if you want to test the 
 
 	Topic where desired velocity of the end-efector is published.
 
-## ROS communication scheme
+
+## Schemes
+
+### ROS communication scheme
 
 ![ROS Interface](images/ROS_communication_scheme.jpg)
 
-## Simplified scheme of controller operation
+### Simplified scheme of controller operation
 
 ![Simplified scheme](images/Controller_operation.jpg)
 
