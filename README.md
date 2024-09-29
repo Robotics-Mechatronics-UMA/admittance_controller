@@ -62,13 +62,19 @@ Run the dummy test for the controller, you can save a rosbag file and watch the 
 
 ## Config files
 
-params.cfg: Config file for changing controller parameters in real time.
+* **`params.cfg`**  
+
+	Config file for changing controller parameters in real time.
 
 ## Launch files
 
-admittance_serial.launch: Launch file to perform real tests with a 3DoF force sensor. 
+* **`admittance_serial.launch`** 
 
-admittance_dummy.launch: Launch file to perform controller simulations using online force signals.
+	Launch file to perform real tests with a 3DoF force sensor. 
+
+* **`admittance_dummy.launch`** 
+
+	Launch file to perform controller simulations using online force signals.
 
 
 ## Nodes
