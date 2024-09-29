@@ -72,10 +72,13 @@ admittance_dummy.launch: Launch file to perform controller simulations using onl
 
 
 ## Nodes
+* **`admittance_controller_node`** 
 
-admittance_controller_node: An admittance controller for a 6 DoF parallel manipulator.
+	An admittance controller for a 6 DoF parallel manipulator.
 
-force_dummy_node: A test node that you can launch if you want to test the admittance controller and check the results without using a real force sensor. In other words, force will be applied online.
+* **`force_dummy_node`** 
+
+	A test node that you can launch if you want to test the admittance controller and check the results without using a real force sensor. In other words, force will be applied online.
 
 ### Subscribed Topics
 
