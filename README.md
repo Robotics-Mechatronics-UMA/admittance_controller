@@ -17,6 +17,7 @@ Maintainer: Victor Rosillo Suero, vrosillo1110@gmail.com**
 
 <!-- [![Build Status](http://rsl-ci.ethz.ch/buildStatus/icon?job=ros_best_practices)](http://rsl-ci.ethz.ch/job/ros_best_practices/) -->
 
+#### Delta manipulator
 ![Delta manipulator](images/Delta_manipulator.jpg)
 
 
@@ -69,25 +70,28 @@ Node1 admittance_controller_node: An admittance controller for a 6 DoF parallel 
 
 Node2 force_dummy_node: A test node that you can launch if you want to test the admittance controller and check the results without using a real force sensor. In other words, force will be applied online.
 
-### ADMITTANCE_CONTROLLER
-
-#### Subscribed Topics
+### Subscribed Topics
 
 * **`/Force`** ([geometry_msgs/Vector3])
 
 	Topic where force sensor readings are published.
 
 
-#### Published Topics
+### Published Topics
 
 * **`/cmd_vel_ee`** ([geometry_msgs/Vector3])
 
 	Topic where desired velocity of the end-efector is published.
 
-## Bugs & Feature Requests
-
-## Operating scheme
+## ROS communication scheme
 
 ![ROS Interface](images/ROS_communication_scheme.jpg)
+
+## Simplified scheme of controller operation
+
+![Simplified scheme](images/Controller_operation.jpg)
+
+
+
 
 
