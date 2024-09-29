@@ -17,7 +17,7 @@ Maintainer: Victor Rosillo Suero, vrosillo1110@gmail.com**
 
 <!-- [![Build Status](http://rsl-ci.ethz.ch/buildStatus/icon?job=ros_best_practices)](http://rsl-ci.ethz.ch/job/ros_best_practices/) -->
 
-![Delta manipulator](images/Manipulador_delta.pdf)
+![Delta manipulator](images/Delta_manipulator.jpg)
 
 
 ### Publications
@@ -88,6 +88,6 @@ Node2 force_dummy_node: A test node that you can launch if you want to test the 
 
 ## Operating scheme
 
-![ROS Interface](images/Diagrama_Comunicacion_ROS.pdf)
+![ROS Interface](images/ROS_communication_scheme.jpg)
 
 
