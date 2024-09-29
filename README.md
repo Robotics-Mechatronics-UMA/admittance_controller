@@ -64,7 +64,7 @@ Run the dummy test for the controller, you can save a rosbag file and watch the 
 
 * **`params.cfg`**  
 
-	Config file for changing controller parameters in real time.
+	Config file for setting initial controller parameters and changing them in real time.
 
 ## Launch files
 
