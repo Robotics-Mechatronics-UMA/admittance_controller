@@ -17,7 +17,9 @@ Maintainer: Victor Rosillo Suero, vrosillo1110@gmail.com**
 
 <!-- [![Build Status](http://rsl-ci.ethz.ch/buildStatus/icon?job=ros_best_practices)](http://rsl-ci.ethz.ch/job/ros_best_practices/) -->
 
-#### Delta manipulator
+### Delta manipulator
+
+Parallel delta manipulator with 3 degrees of freedom. This manipulator has been designed and manufactured by researches from the ISA department at the University of Malaga.
 ![Delta manipulator](images/Delta_manipulator.jpg)
 
 
@@ -99,7 +101,9 @@ Node2 force_dummy_node: A test node that you can launch if you want to test the 
 
 ![Simplified scheme](images/Controller_operation.jpg)
 
+### Simplified model for 1 degree of freedom in Simulink
 
+![Simplified model](images/Controller_in_Simulink.jpg)
 
 
 
