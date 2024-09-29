@@ -27,6 +27,7 @@ manipulator.
 ### Delta manipulator
 
 Parallel delta manipulator with 3 degrees of freedom. This manipulator has been designed and manufactured by researches from the ISA department at the University of Malaga.
+
 ![Delta manipulator](images/Delta_manipulator.jpg)
 
 
@@ -87,6 +88,9 @@ Run the dummy test for the controller, you can save a rosbag file and watch the 
 * **`force_dummy_node`** 
 
 	A test node that you can launch if you want to test the admittance controller and check the results without using a real force sensor. In other words, force will be applied online.
+
+
+## Topics
 
 ### Subscribed Topics
 
