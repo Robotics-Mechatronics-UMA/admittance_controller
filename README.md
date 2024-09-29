@@ -4,9 +4,8 @@
 
 This package contains an admittance controller for a delta parallel manipulator.
 
-**Keywords:** example, package, template
+**Keywords:** ROS, Melodic, Delta, Admittance Controller
 
-Or, add some keywords to the Bitbucket or GitHub repository.
 
 ### License
 
@@ -18,10 +17,13 @@ Maintainer: Victor Rosillo Suero, vrosillo1110@gmail.com**
 
 <!-- [![Build Status](http://rsl-ci.ethz.ch/buildStatus/icon?job=ros_best_practices)](http://rsl-ci.ethz.ch/job/ros_best_practices/) -->
 
-![Delta manipulator](images/Delta_Manipulator.jpeg)
+![Delta manipulator](images/Manipulador_delta.pdf)
 
 
 ### Publications
+
+Bachelor's Thesis: Adaptive control of a lightweight three-degree-of-freedom parallel
+manipulator
 
 ## Installation
 
@@ -46,40 +48,46 @@ To build from source, clone the latest version from this repository into your ca
 
 ## Usage
 
-Describe the quickest way to run this software, for example:
-
 Run the dummy test for the controller, you can save a rosbag file and watch the results of the simulation
 
 	roslaunch admittance_controller controller.launch
 
 ## Config files
 
-params.yaml
+params.cfg: Config file for changing controller parameters in real time.
 
 ## Launch files
 
-controller.launch
+admittance_serial.launch: Launch file to perform real tests with a 3DoF force sensor. 
+
+admittance_dummy.launch: Launch file to perform controller simulations using online force signals.
 
 
 ## Nodes
 
-Node1 admittance_controller_node: an admittance controller for a 6 DoF parallel manipulator.
+Node1 admittance_controller_node: An admittance controller for a 6 DoF parallel manipulator.
 
-Node2 dummy_test_noded: a test node that you can launch if you want to test the admittance controller and check the results.
+Node2 force_dummy_node: A test node that you can launch if you want to test the admittance controller and check the results without using a real force sensor. In other words, force will be applied online.
 
 ### ADMITTANCE_CONTROLLER
 
 #### Subscribed Topics
 
-* **`/Force`** ([geometry_msgs/Twist])
+* **`/Force`** ([geometry_msgs/Vector3])
 
-	Where the reading of the force sensor will be published.
+	Topic where force sensor readings are published.
 
 
 #### Published Topics
 
-* **`/Vel`** ([geometry_msgs/Twist])
+* **`/cmd_vel_ee`** ([geometry_msgs/Vector3])
 
-
+	Topic where desired velocity of the end-efector is published.
 
 ## Bugs & Feature Requests
+
+## Operating scheme
+
+![ROS Interface](images/Diagrama_Comunicacion_ROS.pdf)
+
+
